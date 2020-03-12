@@ -16,6 +16,12 @@ const log = console.log
 
 const argv = process.argv.slice(2, process.argv.length);
 
-if (argv.length === 0) import('./run.js')
+(async () => {
+  if (argv.length === 0) {
+    const run = await import('./run.js')
+    console.log(run);
+    await run.default()
+  }
+})()
 // if (commands[cmd]) return log(`${commands[cmd](env)}`)
 // return `${cmd} not found`

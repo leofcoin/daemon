@@ -59,7 +59,7 @@ const transformBootstrap = async () => {
   await write(join(configStore.root, 'config'), JSON.stringify(config))
 };
 
-(async () => {
+export default async () => {
   try {    
   if (!globalThis.LeofcoinStorage) globalThis.LeofcoinStorage = require('lfc-storage');
   if (!globalThis.accountStore) globalThis.accountStore = new LeofcoinStorage('lfc-account')
@@ -109,4 +109,4 @@ const transformBootstrap = async () => {
       }, 500);
     }
   }
-})()
+}
