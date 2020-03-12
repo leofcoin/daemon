@@ -27,13 +27,24 @@ TODO: Fill out long description.
 
 ## Install
 
-```
+```sh
 npm install --save @leofcoin/daemon
 ```
 
 ## Usage
 
+Spawn daemon from js
+```js
+import Daemon from '@leofcoin/daemon'
+
+const daemon = new Daemon({
+  // config
+})
 ```
+
+Spawn daemon from cli
+```sh
+leofcoin daemon
 ```
 
 ## API
