@@ -11,4 +11,14 @@ export default [{
   plugins: [
     json()
   ]
+}, {
+	input: ['src/index.js'],
+	output: {
+		file: 'daemon.js',
+		format: 'cjs',
+		sourcemap: false
+	},
+  plugins: [
+    json()
+  ]
 }]
