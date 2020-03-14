@@ -18,10 +18,17 @@ globalThis.programExtension = ''
 
 if (platform === 'win32') programExtension = '.exe';
 
-const spawnNode = async (command = ['daemon', '--enable-namesys-pubsub']) => new Promise(async (resolve, reject) => {
-  const node = spawn(join(__dirname, `/node_modules/go-ipfs-dep/go-ipfs/ipfs${programExtension}`), [...command], {env: {
+const spawnNode = async (command, cwd) => new Promise(async (resolve, reject) => {
+  if (command && command.length === 0 || !command) command = ['daemon', '--enable-namesys-pubsub']
+  if (!cwd && globalThis.process) cwd = process.cwd()
+  let node = spawn(join(cwd, `node_modules/go-ipfs-dep/go-ipfs/ipfs${programExtension}`), [...command], {env: {
     IPFS_PATH: configStore.root
   }})
+  
+  node.on('error', error => {
+    reject(error)
+  })
+  
   node.stdout.on('data', async data => {
     console.log(`${data}`);
     if (data.toString().includes('Run migrations now')) {
@@ -107,6 +114,18 @@ export default async () => {
       setTimeout(() => {          
         return spawnNode()
       }, 500);
+    } else if (e.code === 'ENOENT') {
+      try {
+        await spawnNode([], __dirname)
+      } catch (e) {
+        if (e === 'no IPFS repo found') {
+          await spawnNode(['init'], __dirname)
+          // await transformBootstrap()
+          setTimeout(() => {          
+            return spawnNode([], __dirname)
+          }, 500);
+        }
+      }
     }
   }
 }

@@ -19,7 +19,6 @@ const argv = process.argv.slice(2, process.argv.length);
 (async () => {
   if (argv.length === 0) {
     const run = await import('./run.js')
-    console.log(run);
     await run.default()
   }
 })()
