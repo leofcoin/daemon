@@ -4,8 +4,8 @@
   "description": "",
   "main": "daemon.js",
   "bin": {
-    "@leofcoin/daemon": "bin/daemon.js",
-    "daemon": "bin/daemon.js"
+    "@leofcoin/daemon": "cli.js",
+    "daemon": "cli.js"
   },
   "publishConfig": {
     "access": "public"

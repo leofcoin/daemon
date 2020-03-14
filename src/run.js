@@ -19,7 +19,7 @@ globalThis.programExtension = ''
 if (platform === 'win32') programExtension = '.exe';
 
 const spawnNode = async (command = ['daemon', '--enable-namesys-pubsub']) => new Promise(async (resolve, reject) => {
-  const node = spawn(join(__dirname, `../node_modules/go-ipfs-dep/go-ipfs/ipfs${programExtension}`), [...command], {env: {
+  const node = spawn(join(__dirname, `/node_modules/go-ipfs-dep/go-ipfs/ipfs${programExtension}`), [...command], {env: {
     IPFS_PATH: configStore.root
   }})
   node.stdout.on('data', async data => {

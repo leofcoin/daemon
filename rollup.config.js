@@ -1,10 +1,10 @@
 import json from 'rollup-plugin-json'
 
 export default [{
-	input: ['src/daemon.js'],
+	input: ['src/cli.js'],
 	output: {
     banner: '#!/usr/bin/env node',
-		dir: './bin',
+		dir: './',
 		format: 'cjs',
 		sourcemap: false
 	},
@@ -12,9 +12,9 @@ export default [{
     json()
   ]
 }, {
-	input: ['src/index.js'],
+	input: ['src/daemon.js'],
 	output: {
-		file: 'daemon.js',
+		dir: './',
 		format: 'cjs',
 		sourcemap: false
 	},
