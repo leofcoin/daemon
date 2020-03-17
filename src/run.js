@@ -11,8 +11,6 @@ import IpfsHttpClient from 'ipfs-http-client'
 const read = promisify(readFile)
 const write = promisify(writeFile)
 
-globalThis.configStore = new Storage('lfc-config')
-
 const platform = process.platform
 globalThis.programExtension = ''
 
